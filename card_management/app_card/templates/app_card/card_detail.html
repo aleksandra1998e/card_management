@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
+    <title>{{object}} </title>
+</head>
+<body>
+<table class="my_table">
+    <h1>{{object.series}} {{object.number}}
+        {% if card.status == 'e'%} Неактивна {% elif card.status == 'a'%} Активна {% else %} Просрочена {% endif %} </h1>
+        <tr><th>дата</th><th>сумма</th></tr>
+        {% for purchase in object.purchases.all %}
+        <tr><td>{{purchase.date}}</td>
+            <td>{{purchase.amount}}</td>
+        </tr>
+        {% endfor %}
+</table>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Активировать/Деактивировать" class="all_button">
+
+        </form>
+        <form method="LINK" action="/card/delete/{{object.id}}/">
+            <input type="submit" value="Удалить" class="del_button" >
+        </form>
+</body>
+</html>

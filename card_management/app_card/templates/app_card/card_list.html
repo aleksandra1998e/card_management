@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
+    <title>Карты</title>
+</head>
+<body>
+<div class="div1">
+    <table class="my_table">
+        <tr><th>серия</th><th>номер</th><th>дата выпуска</th><th>дата окончания</th><th>статус</th><th>Детали</th></tr>
+        {% for card in card_list %}
+        {% if card_list %}
+        <tr><td>{{card.series}}</td>
+            <td>{{card.number}}</td>
+            <td>{{card.release_date}}</td>
+            <td>{{card.end_date}}</td>
+            <td>{% if card.status == 'e'%} Неактивна {% elif card.status == 'a'%} Активна {% else %} Просрочена {% endif %}</td>
+            <td><a href="/card/{{card.id}}">подробнее</a></td>
+        </tr>
+
+        {% else %}
+        <p></p>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+<div class="div2">
+    <h3>Поиск:</h3>
+ <form method="post" action="/card/search/">
+            {% csrf_token %}
+     <select name="fields">
+         <option value="series">серия</option>
+         <option value="number">номер</option>
+         <option value="status">статус</option>
+     </select>
+     <p><input type="text" name="req" placeholder="Введите запрос" /></p>
+            <input type="submit" value="Поиск" class="all_button">
+     </form>
+     </div>
+</body>
+</html>

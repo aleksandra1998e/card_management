@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
+    <title>Генерация карт</title>
+</head>
+<body>
+<h3>Приступим к генерации!</h3>
+<form method="post">
+    {% csrf_token %}
+    {{generate_form.as_p}}
+    <button type="submit" class="all_button">Сгенерировать</button>
+</form>
+
+</body>
+</html>

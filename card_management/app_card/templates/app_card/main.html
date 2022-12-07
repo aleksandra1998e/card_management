@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
+    <title>Главная страница</title>
+</head>
+<body>
+<h1>Добро пожаловать</h1>
+
+<form method="LINK" action="/card/">
+            <input type="submit" value="Список карт" class="all_button">
+        </form>
+
+<form method="LINK" action="/add_new/">
+            <input type="submit" value="Сгенерировать карты" class="all_button">
+        </form>
+</body>
+</html>
